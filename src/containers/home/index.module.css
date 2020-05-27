@@ -1,0 +1,26 @@
+.container {
+  margin-top: 6rem;
+}
+
+.container p {
+  margin-bottom: 0;
+}
+
+.stepContainer {
+  margin-top: 3rem;
+}
+
+.codeContainer {
+  padding: 1.5rem;
+
+  margin-top: 1rem;
+
+  background-color: black;
+  border-radius: 0.5rem;
+}
+
+.codeContainer pre{
+  margin-bottom: 0rem;
+
+  color: white;
+}
