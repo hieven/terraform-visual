@@ -1,22 +1,35 @@
 {
-  "name": "with-typescript",
+  "name": "terraform-visual",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "deploy": "node scripts/deploy"
   },
   "dependencies": {
-    "next": "latest",
+    "@antv/g6": "^3.5.0",
+    "amplitude-js": "^6.1.0-debug-cookie.1",
+    "bootstrap": "^4.5.0",
+    "lodash": "^4.17.15",
+    "next": "^9.4.2",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "^16.12.0",
+    "react-icons": "^3.10.0"
   },
   "devDependencies": {
-    "@types/node": "^12.12.21",
+    "@types/amplitude-js": "^5.11.0",
+    "@types/gh-pages": "^2.2.0",
+    "@types/lodash": "^4.14.152",
+    "@types/node": "^14.0.5",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
-    "typescript": "3.7.3"
+    "gh-pages": "^2.2.0",
+    "prettier": "^2.0.5",
+    "ts-node": "^8.10.1",
+    "typescript": "3.9.3"
   },
-  "license": "ISC"
+  "license": "MIT"
 }

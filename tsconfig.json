@@ -1,23 +1,74 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "alwaysStrict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "lib": ["dom", "es2017"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext"
-  },
+  // "files": [],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "compilerOptions": {
+    /* Basic Options */
+    "resolveJsonModule": true,
+    // "incremental": true,
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["dom", "es2017"],
+    "allowJs": false,
+    // "checkJs": true,
+    "jsx": "preserve",
+    // "declaration": true,
+    // "declarationMap": true,
+    // "sourceMap": true,
+    // "outFile": "./",
+    // "outDir": "./dist",
+    // "rootDir": "./",
+    // "composite": true,
+    // "tsBuildInfoFile": "./",
+    // "removeComments": true,
+    "noEmit": true,
+    // "importHelpers": true,
+    // "downlevelIteration": true,
+    "isolatedModules": true,
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    /* Additional Checks */
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["./src/*"]
+    },
+    // "rootDirs": [],
+    // "typeRoots": [],
+    // "types": [],
+    // "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    // "preserveSymlinks": true,
+    // "allowUmdGlobalAccess": true,
+
+    /* Source Map Options */
+    // "sourceRoot": "",
+    // "mapRoot": "",
+    // "inlineSourceMap": true,
+    // "inlineSources": true,
+
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* Customized */
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+  }
 }

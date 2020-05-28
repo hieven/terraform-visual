@@ -1,0 +1,104 @@
+.testContainer {
+  position: fixed;
+  bottom: 0;
+}
+
+.container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 15px;
+
+  background-color: #000000cc;
+  border-radius: 4px;
+  color: white;
+}
+
+.expandButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  left: 50%;
+  top: -1rem;
+  transform: translate(-50%, 0);
+
+  width: 2rem;
+  height: 2rem;
+  padding: 5px;
+
+  background-color: white;
+  border: 1px solid whitesmoke;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(9,30,66,0.08), 0 2px 4px 1px rgba(9,30,66,0.08);
+  color: black;
+  cursor: pointer;
+}
+
+.expandButton > .expandButtonIcon {
+  margin: 0;
+}
+
+.resourceContainer {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
+  overflow-x: scroll;
+}
+
+.fieldContainer {
+  display: flex;
+
+  margin-bottom: 10px;
+
+  color: white;
+}
+
+.fieldName,
+.fieldBeforeVal,
+.fieldAfterVal {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.fieldName {
+  margin-right: 5px;
+
+  color: white;
+  font-weight: bold;
+}
+
+.arrow {
+  align-self: center;
+  color: white;
+  margin: 0 5px;
+}
+
+.h300 {
+  height: 300px;
+}
+
+.h150 {
+  height: 150px;
+}
+
+.h30 {
+  height: 30px;
+}
+
+.colorRed {
+  color: #dd514c;
+}
+
+.colorGreen {
+  color: #5eb95e;
+}
+
+.colorYellow {
+  color: #fad232;
+}
