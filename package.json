@@ -12,7 +12,7 @@
     "@antv/g6": "^3.5.0",
     "amplitude-js": "^6.1.0-debug-cookie.1",
     "bootstrap": "^4.5.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "next": "^9.4.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.1",
