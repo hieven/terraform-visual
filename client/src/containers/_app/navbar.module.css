@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-items: center;
+
+  height: 5.6rem;
+
+  background-color: #F8F8F8;
+}
+
+.brand {
+  margin: 0 0 0 2rem;
+
+  color: black;
+  font-size: 2rem;
+  font-weight: 500;
+}
