@@ -1,0 +1,7 @@
+tsconfig.json
+tsconfig.tsbuildinfo
+
+src
+
+template
+!template/dist/**

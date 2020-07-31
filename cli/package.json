@@ -1,0 +1,45 @@
+{
+  "name": "@terraform-visual/cli",
+  "description": "Terraform Visual cli",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "bin": {
+    "terraform-visual": "bin/index.js"
+  },
+  "scripts": {
+    "build": "yarn build:template && yarn build:cli",
+    "build:cli": "rm -rf dist && yarn tsc",
+    "dev:cli": "ts-node src/index",
+    "build:template": "cd template && rm -rf .next && rm -rf dist && yarn next build && yarn next export -o dist",
+    "dev:template": "cd template && yarn next dev"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.1",
+    "@types/node": "^14.0.26",
+    "@types/react": "^16.9.43",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "commander": "^6.0.0",
+    "fs-extra": "^9.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hieven/terraform-visual"
+  },
+  "homepage": "https://hieven.github.io/terraform-visual/",
+  "license": "MIT",
+  "keywords": [
+    "terraform",
+    "terraform-visual",
+    "terraform-graph",
+    "terraform-plan",
+    "plan",
+    "cli",
+    "typescript"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
