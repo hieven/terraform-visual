@@ -16,8 +16,8 @@ $ npm install -g @terraform-visual/cli
 ## Usage
 ### Convert Terraform Plan into JSON File
 ```sh
-$ terraform plan -out=plan.out              # Run plan and output as a file
-$ terraform show -json plan.out > plan.json # Read plan file and output it in JSON format
+$ terraform plan -out=plan.out                # Run plan and output as a file
+$ terraform show -json plan.out > plan.json   # Read plan file and output it in JSON format
 ```
 
 ### Create Terraform Visual Report
