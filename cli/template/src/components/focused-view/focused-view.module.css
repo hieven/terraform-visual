@@ -1,0 +1,59 @@
+.container {
+  height: 40rem;
+  width: 100%;
+
+  padding: 1.5rem;
+
+  background-color: #161616;
+  color: white;
+  overflow: scroll;
+}
+
+.loading {
+
+}
+
+.row {
+  display: flex;
+
+  margin-top: 1rem;
+}
+
+.rowHeader, .rowBefore, .rowArrow {
+  margin-right: 2rem;
+}
+
+.rowHeader {
+  min-width: 10rem;
+  max-width: 10rem;
+
+  font-weight: bold;
+  word-break: break-word;
+}
+
+.rowBefore, .rowAfter {
+  flex: 1;
+}
+
+.rowBefore pre, .rowAfter pre {
+  margin: 0;
+
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.rowArrow {
+  align-self: center;
+}
+
+.colorRed {
+  color: #dd514c;
+}
+
+.colorGreen {
+  color: #5eb95e;
+}
+
+.colorYellow {
+  color: #fad232;
+}

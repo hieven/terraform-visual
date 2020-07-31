@@ -1,41 +1,51 @@
-# Terraform Visual
+# [Terraform Visual](https://hieven.github.io/terraform-visual/)
 
 Terraform Visual is a simple but powerful tool to help you understand your Terraform plan easily.
 
-## Demo
 ![Demo.gif](docs/demo.gif)
 
-or go directly to https://hieven.github.io/terraform-visual/ and upload your Terraform plan
+# How to use it
 
-## How to use it
+### Using [Terraform Visual](https://hieven.github.io/terraform-visual/)
+For people who want to quickly experience how Terraform Visual looks like
 
 1. Generate Terraform plan in JSON format
 
 ```shell
-$ terraform plan -out=plan.out
-$ terraform show -json plan.out > plan.json
+$ terraform plan -out=plan.out                # Run plan and output as a file
+$ terraform show -json plan.out > plan.json   # Read plan file and output it in JSON format
 ```
 
 2. Visit [Terraform Visual](https://hieven.github.io/terraform-visual/)
 
 3. Upload Terraform JSON to the platform
 
+### Using [CLI](https://www.npmjs.com/package/@terraform-visual/cli)
+For people who want to integrate Terraform Visual into CI/CD pipeline.
 
-## How to run it locally
-1. Clone the repo
+Please refer to [@terraform-visual/cli](https://www.npmjs.com/package/@terraform-visual/cli) for more details
 
-```shell
-$ git clone git@github.com:hieven/terraform-visual.git
+1. Install CLI
+```sh
+# Using Yarn
+$ yarn global add @terraform-visual/cli
+
+# Using NPM
+$ npm install -g @terraform-visual/cli
 ```
 
-2. Install NPM dependencies
-
-```shell
-$ yarn
+2. Convert Terraform Plan into JSON File
+```sh
+$ terraform plan -out=plan.out                # Run plan and output as a file
+$ terraform show -json plan.out > plan.json   # Read plan file and output it in JSON format
 ```
 
-3. Start development mode
+3. Create Terraform Visual Report
+```sh
+$ terraform-visual --plan plan.json
+```
 
-```shell
-$ npm run dev
+4. Browse The Report
+```sh
+$ open terraform-visual-report/index.html
 ```

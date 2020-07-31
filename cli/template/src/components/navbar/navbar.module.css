@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+
+  height: 5.6rem;
+
+  background-color: #F8F8F8;
+}
+
+.brand {
+  margin: 0 0 0 2rem;
+
+  color: black;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.githubContainer {
+  margin-left: 3rem;
+}
+
+.githubLink {
+  display: flex;
+  align-items: center;
+
+  color: black;
+  text-decoration: none;
+}
+
+.githubIcon {
+  margin-right: 0.5rem;
+}
+
+.github {
+  margin: 0;
+}
