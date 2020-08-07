@@ -2,7 +2,7 @@
 
 Terraform Visual CLI is an easy-to-use command line tool to generate an interactive static HTML page visualizing provided Terraform plan.
 
-![Demo.gif](https://media2.giphy.com/media/XEsCd9XRvctqBnkMtf/giphy.gif)
+![Demo.gif](https://github.com/hieven/terraform-visual/blob/master/docs/demo.gif?raw=true)
 
 ## Installation
 ```sh
