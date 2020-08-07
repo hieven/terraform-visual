@@ -63,7 +63,8 @@ export const C = (props: Props) => {
         type: 'compactBox',
         direction: 'TB',
         getId: (graphData: PlanGraph.Entities.GraphData) => graphData.id,
-        getWidth: () => PlanGraph.Entities.Utils.LABEL_CONTAINER_WIDTH, // TODO:
+        getWidth: () => 0,
+        getHGap: (graphData: PlanGraph.Entities.GraphData) => graphData.hGap,
       },
       defaultNode: {
         type: 'rect',
