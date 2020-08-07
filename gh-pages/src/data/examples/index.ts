@@ -1,6 +1,6 @@
-import { entityUtils } from '@app/data/entities'
+import { Entities } from '@app/data'
 import awsS3 from '@app/data/examples/aws-s3.json'
 
 export const examples = {
-  awsS3: entityUtils.TerraformPlan.fromJson(awsS3),
+  awsS3: Entities.Utils.TerraformPlan.fromJson(awsS3),
 }

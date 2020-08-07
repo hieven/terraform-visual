@@ -1,3 +1,2 @@
-import page from '@app/containers/home'
-
-export default page
+import { Home } from '@app/containers'
+export default Home.C

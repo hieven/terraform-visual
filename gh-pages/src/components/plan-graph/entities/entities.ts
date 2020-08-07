@@ -1,6 +1,6 @@
 import { ILabelConfig } from '@antv/g6/lib/interface/shape'
 import { ShapeStyle } from '@antv/g6/lib/types'
-import { entities } from '@app/data/entities'
+import { Entities } from '@app/data'
 
 export interface GraphData {
   id: string
@@ -8,13 +8,14 @@ export interface GraphData {
   style?: ShapeStyle
   labelCfg?: ILabelConfig
   children: GraphData[]
-  resource?: entities.TerraformPlanResourceChange
+  resource?: Entities.TerraformPlanResourceChange
+  hGap: number
 }
 
 export interface IntermediateGraph {
   id: string
   label: string
-  resource?: entities.TerraformPlanResourceChange
+  resource?: Entities.TerraformPlanResourceChange
   children: {
     [key: string]: IntermediateGraph
   }

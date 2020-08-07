@@ -1,28 +1,22 @@
-import FileUpload from '@app/containers/_common/file-upload'
-import styles from '@app/containers/home/index.module.css'
-import { Container, Jumbotron } from 'react-bootstrap'
+import { FileUpload } from '@app/components'
+import styles from '@app/containers/home/home.module.css'
 import { Amplitude } from '@app/utils/amplitude'
 import { useEffect } from 'react'
 
-export default () => {
+export const C = () => {
   useEffect(() => {
     Amplitude.logEvent('enter page', { page: 'home' })
   }, [])
 
   return (
     <>
-      <Container className={styles.container}>
-        <Jumbotron>
+      <div className={styles.container}>
+        <div className={styles.jumbotron}>
           <h1>Welcome to Terraform Visual</h1>
-          <p>
-            A simple visualization tool to help you understand your Terraform
-            plan easily
-          </p>
+          <p>A simple visualization tool to help you understand your Terraform plan easily</p>
 
           <div className={styles.stepContainer}>
-            <h6>
-              First, generate Terraform plan in JSON format via following code
-            </h6>
+            <h4>First, generate Terraform plan in JSON format via following code</h4>
 
             <div className={styles.codeContainer}>
               <pre>$ terraform plan -out=plan.out</pre>
@@ -31,12 +25,12 @@ export default () => {
           </div>
 
           <div className={styles.stepContainer}>
-            <h6>Second, upload you Terraform JSON file to the platform</h6>
+            <h4>Second, upload you Terraform JSON file to the platform</h4>
 
-            <FileUpload afterUploaded={afterFileUploaded} />
+            <FileUpload.C afterUploaded={afterFileUploaded} />
           </div>
-        </Jumbotron>
-      </Container>
+        </div>
+      </div>
     </>
   )
 }

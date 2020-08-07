@@ -1,6 +1,4 @@
 {
-  "format_version": "0.1",
-  "terraform_version": "0.12.6",
   "resource_changes": [
     {
       "address": "aws_s3_bucket.s3_bucket_create",

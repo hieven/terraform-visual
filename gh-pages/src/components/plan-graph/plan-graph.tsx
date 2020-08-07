@@ -1,26 +1,26 @@
-import * as G6 from '@antv/g6'
-import * as entitiesPlanDetails from '@app/containers/plan-details/entities'
-import * as entitiyUtilsPlanDetails from '@app/containers/plan-details/entity-utils'
-import { entities } from '@app/data/entities'
+import type { TreeGraph } from '@antv/g6'
+const G6: typeof import('@antv/g6') = process.browser ? require('@antv/g6') : null
+
+import { PlanGraph } from '@app/components'
+import styles from '@app/components/plan-graph/plan-graph.module.css'
+import { Entities } from '@app/data'
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
-// TODO: refactor import * as entitiesPlanDetails from '@app/containers/home/entities'
-
 interface Props {
-  resources: entities.TerraformPlanResourceChange[]
+  plan?: Entities.TerraformPlan
 
   setFocusedResource: Function
 }
 
-export default (props: Props) => {
-  const { resources, setFocusedResource } = props
+export const C = (props: Props) => {
+  const { plan, setFocusedResource } = props
 
-  const ref = React.useRef(null)
-  let graph: G6.TreeGraph
+  const ref = React.useRef<HTMLDivElement>(null)
+  let graph: TreeGraph
 
   useEffect(() => {
-    if (resources.length === 0) {
+    if (!plan) {
       return
     }
 
@@ -28,15 +28,14 @@ export default (props: Props) => {
       graph.destroy()
     }
 
-    const graphData = entitiyUtilsPlanDetails.GraphData.fromTerraformPlanResourceChange(
-      resources
+    const graphData = PlanGraph.Entities.Utils.GraphData.fromTerraformPlanResourceChange(
+      plan.resource_changes,
     )
 
     graph = new G6.TreeGraph({
       // @ts-ignore
       container: ReactDOM.findDOMNode(ref.current),
-      // @ts-ignore
-      width: ref.current.offsetWidth,
+      width: ref?.current?.clientWidth || 0,
       height: 550, // TODO: customize
       linkCenter: true,
       modes: {
@@ -57,15 +56,15 @@ export default (props: Props) => {
             type: 'zoom-canvas',
             // @ts-ignore
             sensitivity: 1,
-            minZoom: 0.5,
           },
         ],
       },
       layout: {
         type: 'compactBox',
         direction: 'TB',
-        getId: (graphData: entitiesPlanDetails.GraphData) => graphData.id,
-        getWidth: () => entitiyUtilsPlanDetails.LABEL_CONTAINER_WIDTH, // TODO:
+        getId: (graphData: PlanGraph.Entities.GraphData) => graphData.id,
+        getWidth: () => 0,
+        getHGap: (graphData: PlanGraph.Entities.GraphData) => graphData.hGap,
       },
       defaultNode: {
         type: 'rect',
@@ -74,9 +73,13 @@ export default (props: Props) => {
           [0, 0.5],
           [1, 0.5],
         ],
+
+        style: {},
       },
       defaultEdge: {
         type: 'cubic-vertical',
+        color: ' #e6e6e6',
+        size: 3,
       },
     })
 
@@ -99,7 +102,15 @@ export default (props: Props) => {
 
       graph.destroy()
     }
-  }, [resources])
+  }, [plan])
 
-  return <div ref={ref} />
+  if (!plan) {
+    return (
+      <div className={styles.container}>
+        <p className={styles.loading}>loading graph...</p>
+      </div>
+    )
+  }
+
+  return <div className={styles.container} ref={ref} />
 }

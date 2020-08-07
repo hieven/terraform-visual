@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  align-items: center;
+
+  position: relative;
+
+  height: 5.6rem;
+
+  background-color: #F8F8F8;
+}
+
+.brand {
+  margin: 0 2rem;
+
+  color: black;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.githubLink {
+  display: flex;
+  align-items: center;
+
+  color: black;
+  text-decoration: none;
+}
+
+.nav, .githubIcon, .github {
+  color: #6b6c6c;
+}
+
+.nav:hover, .nav:hover .githubIcon, .nav:hover .github {
+  color: #000000b3;
+}
+
+.githubIcon {
+  margin-right: 0.8rem;
+}
+
+.github {
+  margin: 0;
+}
+
+.nav, .fileUploadContainer {
+  padding: 0.8rem 2rem;
+}
+
+.nav {
+  cursor: pointer;
+}
+
+.fileUploadContainer {
+  position: absolute;
+
+  right: 0;
+}
