@@ -9,6 +9,7 @@ export interface GraphData {
   labelCfg?: ILabelConfig
   children: GraphData[]
   resource?: Entities.TerraformPlanResourceChange
+  hGap: number
 }
 
 export interface IntermediateGraph {

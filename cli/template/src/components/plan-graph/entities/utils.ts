@@ -4,22 +4,21 @@ import { PlanGraph } from '@app/components'
 import { Entities } from '@app/data'
 
 const COLOR_DARK_GREY = '#6c757d'
-const COLOR_GREEN = '#5eb95e'
-const COLOR_RED = '#dd514c'
-const COLOR_YELLOW = '#fad232'
+const COLOR_GREEN = '#28a745'
+const COLOR_RED = '#dc3545'
+const COLOR_YELLOW = '#ffc107'
 const COLOR_WHITE = '#ffffff'
 
 const LABEL_FONT_SIZE = 14
-export const LABEL_CONTAINER_WIDTH = 120
-const LABEL_MAX_WIDTH = 100
-const LABEL_PADDING = LABEL_CONTAINER_WIDTH - LABEL_MAX_WIDTH
+const LABEL_PADDING = 20
+const NODE_GUTTER = 15
 
 export const GraphData = {
   fromTerraformPlanResourceChange(
     changes: Entities.TerraformPlanResourceChange[],
   ): PlanGraph.Entities.GraphData {
     const intermediateGraph = IntermediateGraph.fromTerraformPlanResourceChange(changes)
-    const graphChildren = IntermediateGraph.toGraphData(intermediateGraph)
+    const graphChildren = IntermediateGraph.toGraphData(intermediateGraph, 0, [])
 
     return graphChildren
   },
@@ -70,12 +69,14 @@ export const IntermediateGraph = {
 
   toGraphData(
     intermediateGraph: PlanGraph.Entities.IntermediateGraph,
+    level: number,
+    levelLastNode: PlanGraph.Entities.GraphData[],
   ): PlanGraph.Entities.GraphData {
-    const [label, labelWidth] = trimStr(intermediateGraph.label, LABEL_FONT_SIZE, LABEL_MAX_WIDTH)
+    const [labelWidth] = G6.Util.getTextSize(intermediateGraph.label, LABEL_FONT_SIZE)
 
     const graphData: PlanGraph.Entities.GraphData = {
       id: intermediateGraph.id,
-      label,
+      label: intermediateGraph.label,
       children: [],
       labelCfg: {
         style: {
@@ -90,6 +91,7 @@ export const IntermediateGraph = {
         radius: 4,
       },
       resource: intermediateGraph.resource,
+      hGap: 0,
     }
 
     if (!graphData.style) {
@@ -135,37 +137,18 @@ export const IntermediateGraph = {
     }
 
     for (const child of Object.values(intermediateGraph.children)) {
-      graphData.children.push(IntermediateGraph.toGraphData(child))
+      const childData = IntermediateGraph.toGraphData(child, level + 1, levelLastNode)
+
+      graphData.children.push(childData)
     }
+
+    if (levelLastNode[level]) {
+      levelLastNode[level].hGap =
+        (levelLastNode[level].style.width + graphData.style.width) / 4 + NODE_GUTTER
+    }
+
+    levelLastNode[level] = graphData
 
     return graphData
   },
-}
-
-/**
- * trimStr calculates how many chars could fit in given a fixed max width
- */
-const trimStr = (inputStr: string, fontSize: number, maxWidth: number): [string, number] => {
-  let width = 0
-
-  const pattern = new RegExp('[\u4E00-\u9FA5]+')
-
-  for (let i = 0; i < inputStr.length; i++) {
-    const char = inputStr[i]
-
-    let charWidth = 0
-    if (pattern.test(char)) {
-      charWidth += fontSize
-    } else {
-      charWidth += G6.Util.getLetterWidth(char, fontSize)
-    }
-
-    if (width + charWidth > maxWidth) {
-      return [inputStr.slice(0, i) + '...', width]
-    }
-
-    width += charWidth
-  }
-
-  return [inputStr, width]
 }

@@ -9,10 +9,6 @@
   overflow: scroll;
 }
 
-.loading {
-
-}
-
 .row {
   display: flex;
 
@@ -47,13 +43,13 @@
 }
 
 .colorRed {
-  color: #dd514c;
+  color: #dc3545;
 }
 
 .colorGreen {
-  color: #5eb95e;
+  color: #28a745;
 }
 
 .colorYellow {
-  color: #fad232;
+  color: #ffc107;
 }
