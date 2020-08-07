@@ -4,9 +4,9 @@ import { PlanGraph } from '@app/components'
 import { Entities } from '@app/data'
 
 const COLOR_DARK_GREY = '#6c757d'
-const COLOR_GREEN = '#5eb95e'
-const COLOR_RED = '#dd514c'
-const COLOR_YELLOW = '#fad232'
+const COLOR_GREEN = '#28a745'
+const COLOR_RED = '#dc3545'
+const COLOR_YELLOW = '#ffc107'
 const COLOR_WHITE = '#ffffff'
 
 const LABEL_FONT_SIZE = 14
