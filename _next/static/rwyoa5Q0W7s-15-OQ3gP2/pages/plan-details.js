@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[16],{BBEn:function(n,w,i){"use strict";i.r(w);var o=i("dZ+D");w.default=o.a},bCM8:function(n,w,i){(window.__NEXT_P=window.__NEXT_P||[]).push(["/plan-details",function(){return i("BBEn")}])}},[["bCM8",1,0,3,6,5,2,7]]]);
