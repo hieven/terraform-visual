@@ -1,4 +1,3 @@
-import * as entities from '@app/data/entities/entities'
-import * as entityUtils from '@app/data/entities/utils'
-
-export { entities, entityUtils }
+import * as Utils from '@app/data/entities/utils'
+export * from '@app/data/entities/entities'
+export { Utils }

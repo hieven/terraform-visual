@@ -1,10 +1,10 @@
-import page from '@app/containers/plan-details'
-import { examples } from '@app/data/examples'
-import { useEffect } from 'react'
+import { PlanDetails } from '@app/containers'
 import { useDispatchTerraformPlan } from '@app/context/terraform-plan'
+import { examples } from '@app/data/examples'
 import { Amplitude } from '@app/utils/amplitude'
+import { useEffect } from 'react'
 
-export default () => {
+const Page = () => {
   const dispatch = useDispatchTerraformPlan()
 
   useEffect(() => {
@@ -16,5 +16,7 @@ export default () => {
     })
   }, [])
 
-  return page()
+  return PlanDetails.C()
 }
+
+export default Page

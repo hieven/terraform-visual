@@ -1,41 +1,41 @@
-import FileUpload from '@app/containers/_common/file-upload'
-import Link from 'next/link'
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import { FileUpload } from '@app/components'
+import styles from '@app/containers/_app/navbar.module.css'
 import { Amplitude } from '@app/utils/amplitude'
+import Link from 'next/link'
+import { FaGithub } from 'react-icons/fa'
 
-export default () => {
+export const C = () => {
   return (
-    <Navbar bg="light" variant="light" expand="lg" fixed="top">
-      <Link href="/" as="/terraform-visual">
-        <Navbar.Brand href="#">Terraform Visual</Navbar.Brand>
+    <div className={styles.container}>
+      <Link href="/">
+        <h1 className={styles.brand}>Terraform Visual</h1>
       </Link>
 
-      <Navbar.Toggle />
+      <Link href="/">
+        <div className={styles.nav}>Home</div>
+      </Link>
 
-      <Navbar.Collapse className="justify-content-end">
-        <Nav className="mr-auto">
-          <Link href="/" as="/terraform-visual">
-            <Nav.Link href="/">Home</Nav.Link>
-          </Link>
+      <Link href="/examples/aws-s3">
+        <div className={styles.nav}>Example - AWS</div>
+      </Link>
 
-          <NavDropdown title="Examples" id="basic-nav-dropdown">
-            <Link
-              href="/examples/aws-s3"
-              as="/terraform-visual/examples/aws-s3"
-            >
-              <NavDropdown.Item href="/examples/aws-s3">
-                AWS S3
-              </NavDropdown.Item>
-            </Link>
-          </NavDropdown>
-        </Nav>
+      <div className={styles.nav}>
+        <a
+          className={styles.githubLink}
+          href="https://github.com/hieven/terraform-visual"
+          target="_blank"
+        >
+          <FaGithub className={styles.githubIcon} size="2.5rem" />
+          <p className={styles.github}>GitHub</p>
+        </a>
+      </div>
 
-        <FileUpload afterUploaded={afterFileUploaded} />
-      </Navbar.Collapse>
-    </Navbar>
+      <div className={styles.fileUploadContainer}>
+        <FileUpload.C afterUploaded={afterFileUploaded} />
+      </div>
+    </div>
   )
 }
-
 const afterFileUploaded = () => {
   Amplitude.logEvent('upload file', { component: 'navbar' })
 }

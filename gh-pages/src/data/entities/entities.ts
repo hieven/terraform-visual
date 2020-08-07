@@ -1,10 +1,10 @@
 export interface TerraformPlan {
-  resourceChanges: TerraformPlanResourceChange[]
+  resource_changes: TerraformPlanResourceChange[]
 }
 
 export interface TerraformPlanResourceChange {
   address: string
-  moduleAddress?: string
+  module_address?: string
   type: string
   name: string
   change: TerraformPlanResourceChangeChange
@@ -14,7 +14,7 @@ export interface TerraformPlanResourceChangeChange {
   actions: string[]
   before: { [key: string]: unknown } | null
   after: { [key: string]: unknown } | null
-  afterUnknown: { [key: string]: unknown }
+  after_unknown: { [key: string]: unknown }
 }
 
 export enum TerraformPlanResourceChangeChangeAction {

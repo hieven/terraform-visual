@@ -1,9 +1,9 @@
-import styles from '@app/containers/_app/index.module.css'
-import Navbar from '@app/containers/_app/navbar'
+import { Navbar } from '@app/containers/_app'
+import styles from '@app/containers/_app/app.module.css'
 import { TerraofmrPlanProvider } from '@app/context/terraform-plan'
 import Head from 'next/head'
 
-export default ({ Component, pageProps }: any) => {
+export const C = ({ Component, pageProps }: any) => {
   const title = 'Terraform Visual'
 
   return (
@@ -14,7 +14,7 @@ export default ({ Component, pageProps }: any) => {
       </Head>
 
       <TerraofmrPlanProvider>
-        <Navbar />
+        <Navbar.C />
 
         <div className={styles.container}>
           <Component {...pageProps} />

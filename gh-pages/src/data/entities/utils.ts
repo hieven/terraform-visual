@@ -1,29 +1,29 @@
-import { entities } from '@app/data/entities'
+import { Entities } from '@app/data'
 
 export const TerraformPlan = {
-  fromJsonStr(jsonStr: string): entities.TerraformPlan {
+  fromJsonStr(jsonStr: string): Entities.TerraformPlan {
     const planJson = JSON.parse(jsonStr)
     return TerraformPlan.fromJson(planJson)
   },
 
-  fromJson(planJson: { [key: string]: any }): entities.TerraformPlan {
-    const plan: entities.TerraformPlan = { resourceChanges: [] }
+  fromJson(planJson: { [key: string]: any }): Entities.TerraformPlan {
+    const plan: Entities.TerraformPlan = { resource_changes: [] }
 
     for (const resource_change of planJson.resource_changes) {
-      const resourceChange: entities.TerraformPlanResourceChange = {
+      const resourceChange: Entities.TerraformPlanResourceChange = {
         address: resource_change.address,
-        moduleAddress: resource_change.module_address,
+        module_address: resource_change.module_address,
         type: resource_change.type,
         name: resource_change.name,
         change: {
           actions: resource_change.change.actions,
           before: resource_change.change.before,
           after: resource_change.change.after,
-          afterUnknown: resource_change.change.after_unknown,
+          after_unknown: resource_change.change.after_unknown,
         },
       }
 
-      plan.resourceChanges.push(resourceChange)
+      plan.resource_changes.push(resourceChange)
     }
 
     return plan
@@ -32,59 +32,39 @@ export const TerraformPlan = {
 
 export const TerraformPlanResourceChangeChange = {
   getActionAlias(
-    change: entities.TerraformPlanResourceChangeChange
-  ): entities.TerraformPlanResourceChangeChangeActionAlias {
-    if (
-      change.actions[0] ===
-      entities.TerraformPlanResourceChangeChangeAction.Noop
-    ) {
-      return entities.TerraformPlanResourceChangeChangeActionAlias.Noop
+    change: Entities.TerraformPlanResourceChangeChange,
+  ): Entities.TerraformPlanResourceChangeChangeActionAlias {
+    if (change.actions[0] === Entities.TerraformPlanResourceChangeChangeAction.Noop) {
+      return Entities.TerraformPlanResourceChangeChangeActionAlias.Noop
     }
 
-    if (
-      change.actions[0] ===
-      entities.TerraformPlanResourceChangeChangeAction.Create
-    ) {
-      if (
-        change.actions[1] ===
-        entities.TerraformPlanResourceChangeChangeAction.Delete
-      ) {
-        return entities.TerraformPlanResourceChangeChangeActionAlias
-          .CreateDelete
+    if (change.actions[0] === Entities.TerraformPlanResourceChangeChangeAction.Create) {
+      if (change.actions[1] === Entities.TerraformPlanResourceChangeChangeAction.Delete) {
+        return Entities.TerraformPlanResourceChangeChangeActionAlias.CreateDelete
       } else {
-        return entities.TerraformPlanResourceChangeChangeActionAlias.Create
+        return Entities.TerraformPlanResourceChangeChangeActionAlias.Create
       }
     }
 
-    if (
-      change.actions[0] ===
-      entities.TerraformPlanResourceChangeChangeAction.Update
-    ) {
-      return entities.TerraformPlanResourceChangeChangeActionAlias.Update
+    if (change.actions[0] === Entities.TerraformPlanResourceChangeChangeAction.Update) {
+      return Entities.TerraformPlanResourceChangeChangeActionAlias.Update
     }
 
-    if (
-      change.actions[0] ===
-      entities.TerraformPlanResourceChangeChangeAction.Delete
-    ) {
-      if (
-        change.actions[1] ===
-        entities.TerraformPlanResourceChangeChangeAction.Create
-      ) {
-        return entities.TerraformPlanResourceChangeChangeActionAlias
-          .DeleteCreate
+    if (change.actions[0] === Entities.TerraformPlanResourceChangeChangeAction.Delete) {
+      if (change.actions[1] === Entities.TerraformPlanResourceChangeChangeAction.Create) {
+        return Entities.TerraformPlanResourceChangeChangeActionAlias.DeleteCreate
       } else {
-        return entities.TerraformPlanResourceChangeChangeActionAlias.Delete
+        return Entities.TerraformPlanResourceChangeChangeActionAlias.Delete
       }
     }
 
-    return entities.TerraformPlanResourceChangeChangeActionAlias.Unknown
+    return Entities.TerraformPlanResourceChangeChangeActionAlias.Unknown
   },
 
   getDiff(
-    change: entities.TerraformPlanResourceChangeChange
-  ): entities.TerraformPlanResourceChangeChangeDiff {
-    const diff: entities.TerraformPlanResourceChangeChangeDiff = {}
+    change: Entities.TerraformPlanResourceChangeChange,
+  ): Entities.TerraformPlanResourceChangeChangeDiff {
+    const diff: Entities.TerraformPlanResourceChangeChangeDiff = {}
 
     if (change.before) {
       for (const field of Object.keys(change.before)) {
@@ -101,7 +81,7 @@ export const TerraformPlanResourceChangeChange = {
       }
     }
 
-    for (const field of Object.keys(change.afterUnknown)) {
+    for (const field of Object.keys(change.after_unknown)) {
       if (!diff[field]) {
         diff[field] = []
       }

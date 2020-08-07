@@ -1,5 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
+import '@app/pages/_app.css'
 
-import page from '@app/containers/_app'
+import { _App } from '@app/containers'
 
-export default page
+export default _App.C

@@ -1,9 +1,11 @@
-.container {
-  margin-top: 6rem;
+.container h1, .container h4{
+  font-weight: 500;
 }
 
-.container p {
-  margin-bottom: 0;
+.jumbotron {
+  padding: 3rem 4rem;
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
 }
 
 .stepContainer {
@@ -19,7 +21,7 @@
   border-radius: 0.5rem;
 }
 
-.codeContainer pre{
+.codeContainer pre {
   margin-bottom: 0rem;
 
   color: white;

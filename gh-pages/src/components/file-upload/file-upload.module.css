@@ -1,0 +1,42 @@
+.inputFileContainer {
+  display: inline-flex;
+
+  position: relative;
+
+  border: 0.1rem solid #d3d3d3;
+  border-radius: 0.4rem;
+}
+
+.inputFile {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  width: 100%;
+
+  opacity: 0;
+}
+
+.inputBar, .btn {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.inputBar {
+  padding-left: 1rem;
+  padding-right: 4rem;
+
+  background-color: #ffffff;
+  border-top-left-radius: 0.4rem;
+  border-bottom-left-radius: 0.4rem;
+}
+
+.btn {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  background-color: #e6e6e6;
+  border: 0;
+  border-left: 0.1rem solid #d3d3d3;
+  font-size: 1.6rem;
+}

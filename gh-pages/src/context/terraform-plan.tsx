@@ -1,15 +1,13 @@
-import { entities } from '@app/data/entities'
+import { Entities } from '@app/data'
 import { createContext, useContext, useReducer, Dispatch } from 'react'
 
 // @ts-ignore
 const TerraformPlanContext = createContext<State>()
 // @ts-ignore
-const TerraformPlanDispatchContext = createContext<
-  Dispatch<Action<entities.TerraformPlan>>
->()
+const TerraformPlanDispatchContext = createContext<Dispatch<Action<Entities.TerraformPlan>>>()
 
 interface State {
-  data?: entities.TerraformPlan
+  data?: Entities.TerraformPlan
 }
 
 interface Action<TPayload = unknown> {
@@ -17,7 +15,7 @@ interface Action<TPayload = unknown> {
   payload: TPayload
 }
 
-const reducer = (state: State, action: Action<entities.TerraformPlan>) => {
+const reducer = (state: State, action: Action<Entities.TerraformPlan>) => {
   switch (action.type) {
     case 'UPLOAD_TERRAFORM_PLAN': {
       const newState = Object.assign({}, state, { data: action.payload })
@@ -39,14 +37,11 @@ export const TerraofmrPlanProvider = ({ children }: any) => {
 
   return (
     <TerraformPlanDispatchContext.Provider value={Dispatch}>
-      <TerraformPlanContext.Provider value={state}>
-        {children}
-      </TerraformPlanContext.Provider>
+      <TerraformPlanContext.Provider value={state}>{children}</TerraformPlanContext.Provider>
     </TerraformPlanDispatchContext.Provider>
   )
 }
 
 export const useTerraformPlan = (): State => useContext(TerraformPlanContext)
-export const useDispatchTerraformPlan = (): Dispatch<
-  Action<entities.TerraformPlan>
-> => useContext(TerraformPlanDispatchContext)
+export const useDispatchTerraformPlan = (): Dispatch<Action<Entities.TerraformPlan>> =>
+  useContext(TerraformPlanDispatchContext)
