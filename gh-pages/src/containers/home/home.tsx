@@ -1,13 +1,8 @@
 import { FileUpload } from '@app/components'
 import styles from '@app/containers/home/home.module.css'
 import { Amplitude } from '@app/utils/amplitude'
-import { useEffect } from 'react'
 
 export const C = () => {
-  useEffect(() => {
-    Amplitude.logEvent('enter page', { page: 'home' })
-  }, [])
-
   return (
     <>
       <div className={styles.container}>
