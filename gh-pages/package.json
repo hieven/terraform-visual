@@ -1,7 +1,7 @@
 {
   "name": "@terraform-visual/gh-pages",
   "description": "Terraform Visual GitHub page",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "scripts": {
     "build": "rm -rf .next && yarn next build && yarn next export -o dist",
     "dev": "yarn next dev",
