@@ -24,6 +24,10 @@ export const C = ({ Component, pageProps }: any) => {
       <Head>
         <title>{title}</title>
         <meta property="og:title" content={title} key="title" />
+        <meta
+          name="google-site-verification"
+          content="uP7DvoPqGNsHxvkVhK8aI0zizIHipI0LhZUueqfbG8Y"
+        />
       </Head>
 
       <TerraofmrPlanProvider>
