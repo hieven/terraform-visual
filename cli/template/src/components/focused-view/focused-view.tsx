@@ -2,6 +2,7 @@ import styles from '@app/components/focused-view/focused-view.module.css'
 import { Entities } from '@app/data'
 import isEqual from 'lodash/isEqual'
 import { BsArrowRight } from 'react-icons/bs'
+import type { JSX } from 'react'
 
 interface Props {
   resource?: Entities.TerraformPlanResourceChange
