@@ -27,10 +27,6 @@ Please refer to [@terraform-visual/cli](https://www.npmjs.com/package/@terraform
 
 1. Install CLI
 ```sh
-# Using Yarn
-$ yarn global add @terraform-visual/cli
-
-# Using NPM
 $ npm install -g @terraform-visual/cli
 ```
 
