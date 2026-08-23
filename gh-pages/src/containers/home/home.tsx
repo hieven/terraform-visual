@@ -31,5 +31,5 @@ export const C = () => {
 }
 
 const afterFileUploaded = () => {
-  Amplitude.logEvent('upload file', { page: 'home', component: 'steps' })
+  Amplitude?.logEvent('upload file', { page: 'home', component: 'steps' })
 }

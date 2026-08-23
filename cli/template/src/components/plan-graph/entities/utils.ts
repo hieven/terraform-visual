@@ -1,5 +1,3 @@
-const G6: typeof import('@antv/g6') = process.browser ? require('@antv/g6') : null
-
 import { PlanGraph } from '@app/components'
 import { Entities } from '@app/data'
 
@@ -12,6 +10,19 @@ const COLOR_WHITE = '#ffffff'
 const LABEL_FONT_SIZE = 14
 const LABEL_PADDING = 20
 const NODE_GUTTER = 15
+
+const getLabelWidth = (label: string): number => {
+  if (typeof document !== 'undefined') {
+    const context = document.createElement('canvas').getContext('2d')
+
+    if (context) {
+      context.font = `${LABEL_FONT_SIZE}px sans-serif`
+      return context.measureText(label).width
+    }
+  }
+
+  return label.length * LABEL_FONT_SIZE * 0.6
+}
 
 export const GraphData = {
   fromTerraformPlanResourceChange(
@@ -72,23 +83,31 @@ export const IntermediateGraph = {
     level: number,
     levelLastNode: PlanGraph.Entities.GraphData[],
   ): PlanGraph.Entities.GraphData {
-    const [labelWidth] = G6.Util.getTextSize(intermediateGraph.label, LABEL_FONT_SIZE)
+    const labelWidth = getLabelWidth(intermediateGraph.label)
+
+    const width = labelWidth + LABEL_PADDING
+    const height = LABEL_FONT_SIZE + LABEL_PADDING
 
     const graphData: PlanGraph.Entities.GraphData = {
       id: intermediateGraph.id,
       label: intermediateGraph.label,
       children: [],
-      labelCfg: {
-        style: {
-          fill: COLOR_WHITE,
-          fontSize: LABEL_FONT_SIZE,
-        },
+      data: {
+        width,
+        height,
+        hGap: 0,
       },
       style: {
-        width: labelWidth + LABEL_PADDING,
+        size: [width, height],
         fill: COLOR_DARK_GREY,
         stroke: COLOR_DARK_GREY,
         radius: 4,
+        labelText: intermediateGraph.label,
+        labelFill: COLOR_WHITE,
+        labelFontSize: LABEL_FONT_SIZE,
+        labelPlacement: 'center',
+        labelTextAlign: 'center',
+        labelTextBaseline: 'middle',
       },
       resource: intermediateGraph.resource,
       hGap: 0,
@@ -144,7 +163,8 @@ export const IntermediateGraph = {
 
     if (levelLastNode[level]) {
       levelLastNode[level].hGap =
-        (levelLastNode[level].style.width + graphData.style.width) / 4 + NODE_GUTTER
+        (levelLastNode[level].data.width + graphData.data.width) / 4 + NODE_GUTTER
+      levelLastNode[level].data.hGap = levelLastNode[level].hGap
     }
 
     levelLastNode[level] = graphData

@@ -4,7 +4,7 @@ import { Amplitude } from '@app/utils/amplitude'
 
 const Page = () => {
   useEffect(() => {
-    Amplitude.logEvent('enter page', { page: 'home' })
+    Amplitude?.logEvent('enter page', { page: 'home' })
   }, [])
 
   return Home.C()

@@ -2,6 +2,7 @@ import styles from '@app/components/focused-view/focused-view.module.css'
 import { Entities } from '@app/data'
 import isEqual from 'lodash/isEqual'
 import { BsArrowRight } from 'react-icons/bs'
+import type { JSX } from 'react'
 
 interface Props {
   resource?: Entities.TerraformPlanResourceChange
@@ -105,9 +106,8 @@ const ChangedField = (props: ChangedFieldProps) => {
   const beforeChange = changes[0]
   const afterChange = changes[changes.length - 1]
 
-  const [beforeChangeColorClassName, afterChangeColorClassName] = getFieldChangeColorClassName(
-    actionAlias,
-  )
+  const [beforeChangeColorClassName, afterChangeColorClassName] =
+    getFieldChangeColorClassName(actionAlias)
 
   return (
     <div className={styles.row}>

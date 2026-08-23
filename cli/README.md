@@ -6,10 +6,6 @@ Terraform Visual CLI is an easy-to-use command line tool to generate an interact
 
 ## Installation
 ```sh
-# Using Yarn
-$ yarn global add @terraform-visual/cli
-
-# Using NPM
 $ npm install -g @terraform-visual/cli
 ```
 

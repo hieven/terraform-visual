@@ -1,15 +1,15 @@
 import { FocusedView, PlanGraph } from '@app/components'
 import { Entities } from '@app/data'
 import styles from '@app/pages/index.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Home = () => {
-  let plan
+  const [plan, setPlan] = useState<Entities.TerraformPlan>()
 
-  if (process.browser) {
+  useEffect(() => {
     //@ts-ignore
-    plan = window.TF_PLAN
-  }
+    setPlan(window.TF_PLAN)
+  }, [])
 
   const [focusedResource, setFocusedResource] = useState<Entities.TerraformPlanResourceChange>()
 

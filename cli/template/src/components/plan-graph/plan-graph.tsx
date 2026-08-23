@@ -1,11 +1,10 @@
-import type { TreeGraph } from '@antv/g6'
-const G6: typeof import('@antv/g6') = process.browser ? require('@antv/g6') : null
+import type { Graph as G6Graph } from '@antv/g6'
+const G6: typeof import('@antv/g6') | null = typeof window !== 'undefined' ? require('@antv/g6') : null
 
 import { PlanGraph } from '@app/components'
 import styles from '@app/components/plan-graph/plan-graph.module.css'
 import { Entities } from '@app/data'
 import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
 
 interface Props {
   plan?: Entities.TerraformPlan
@@ -17,87 +16,59 @@ export const C = (props: Props) => {
   const { plan, setFocusedResource } = props
 
   const ref = React.useRef<HTMLDivElement>(null)
-  let graph: TreeGraph
-
   useEffect(() => {
-    if (!plan) {
+    if (!plan || !G6) {
       return
-    }
-
-    if (graph) {
-      graph.destroy()
     }
 
     const graphData = PlanGraph.Entities.Utils.GraphData.fromTerraformPlanResourceChange(
       plan.resource_changes,
     )
 
-    graph = new G6.TreeGraph({
-      // @ts-ignore
-      container: ReactDOM.findDOMNode(ref.current),
+    const graph: G6Graph = new G6.Graph({
+      container: ref.current,
       width: ref?.current?.clientWidth || 0,
       height: 550, // TODO: customize
-      linkCenter: true,
-      modes: {
-        default: [
-          {
-            type: 'collapse-expand',
-            onChange(item, collapsed) {
-              if (!item) {
-                return
-              }
-
-              item.get('model').data.collapsed = collapsed
-              return true
-            },
-          },
-          'drag-canvas',
-          {
-            type: 'zoom-canvas',
-            // @ts-ignore
-            sensitivity: 1,
-          },
-        ],
-      },
+      autoFit: 'view',
+      behaviors: [
+        { type: 'collapse-expand', trigger: 'click' },
+        'drag-canvas',
+        { type: 'zoom-canvas', sensitivity: 1 },
+      ],
       layout: {
-        type: 'compactBox',
+        type: 'compact-box',
         direction: 'TB',
-        getId: (graphData: PlanGraph.Entities.GraphData) => graphData.id,
-        getWidth: () => 0,
-        getHGap: (graphData: PlanGraph.Entities.GraphData) => graphData.hGap,
+        getId: (layoutData: any) => layoutData.id,
+        getWidth: (layoutData: any) => layoutData.data?.width || 0,
+        getHeight: (layoutData: any) => layoutData.data?.height || 0,
+        getHGap: (layoutData: any) => layoutData.data?.hGap || 0,
       },
-      defaultNode: {
+      node: {
         type: 'rect',
-
-        anchorPoints: [
-          [0, 0.5],
-          [1, 0.5],
-        ],
       },
-      defaultEdge: {
+      edge: {
         type: 'cubic-vertical',
-        color: ' #e6e6e6',
-        size: 3,
+        style: {
+          stroke: '#e6e6e6',
+          lineWidth: 3,
+        },
       },
+      data: G6.treeToGraphData(graphData),
     })
 
-    graph.on('node:mouseenter', (event: any) => {
-      if (!event.item._cfg.model.resource) {
+    graph.on('node:pointerenter', (event: any) => {
+      const resource = graph.getNodeData(event.target.id)?.resource
+
+      if (!resource) {
         return
       }
 
-      setFocusedResource(event.item._cfg.model.resource)
+      setFocusedResource(resource)
     })
 
-    graph.data(graphData)
     graph.render()
-    graph.fitView()
 
     return () => {
-      if (!graph) {
-        return
-      }
-
       graph.destroy()
     }
   }, [plan])

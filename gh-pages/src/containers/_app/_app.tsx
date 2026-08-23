@@ -10,13 +10,19 @@ export const C = ({ Component, pageProps }: any) => {
   const title = 'Terraform Visual'
 
   useEffect(() => {
-    ReactGa.set({ page: window.location.pathname })
-    ReactGa.pageview(window.location.pathname)
+    const trackPageView = () => {
+      const page = window.location.pathname
 
-    Router.events.on('routeChangeComplete', () => {
-      ReactGa.set({ page: window.location.pathname })
-      ReactGa.pageview(window.location.pathname)
-    })
+      ReactGa.set({ page })
+      ReactGa.send({ hitType: 'pageview', page })
+    }
+
+    trackPageView()
+    Router.events.on('routeChangeComplete', trackPageView)
+
+    return () => {
+      Router.events.off('routeChangeComplete', trackPageView)
+    }
   }, [])
 
   return (
