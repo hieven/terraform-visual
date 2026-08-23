@@ -5,5 +5,7 @@
 const debug = process.env.NODE_ENV !== 'production'
 
 module.exports = {
+  output: 'export',
   assetPrefix: debug ? '' : '/terraform-visual/',
+  outputFileTracingRoot: __dirname,
 }

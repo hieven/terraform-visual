@@ -8,7 +8,7 @@ const Page = () => {
   const dispatch = useDispatchTerraformPlan()
 
   useEffect(() => {
-    Amplitude.logEvent('enter page', { page: 'examples', example: 'aws-s3' })
+    Amplitude?.logEvent('enter page', { page: 'examples', example: 'aws-s3' })
 
     dispatch({
       type: 'UPLOAD_TERRAFORM_PLAN',

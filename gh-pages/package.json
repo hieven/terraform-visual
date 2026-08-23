@@ -3,31 +3,30 @@
   "description": "Terraform Visual GitHub page",
   "version": "1.2.1",
   "scripts": {
-    "build": "rm -rf .next && next build && next export -o dist",
-    "dev": "next dev",
+    "build": "rm -rf .next dist && next build --webpack && mv out dist",
+    "dev": "next dev --webpack",
     "deploy": "touch dist/.nojekyll && node scripts/deploy"
   },
   "dependencies": {
-    "@antv/g6": "^3.6.0",
-    "amplitude-js": "^7.1.0",
-    "lodash": "^4.17.19",
-    "next": "^9.5.4",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-ga": "^3.1.2",
-    "react-icons": "^3.10.0"
+    "@antv/g6": "^5.1.1",
+    "amplitude-js": "^8.21.10",
+    "lodash": "^4.18.1",
+    "next": "16.3.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-ga4": "^3.0.1",
+    "react-icons": "^5.7.0"
   },
   "devDependencies": {
-    "@types/amplitude-js": "^5.11.0",
-    "@types/gh-pages": "^3.0.0",
-    "@types/lodash": "^4.14.159",
-    "@types/node": "^14.0.27",
-    "@types/react": "^16.9.44",
-    "@types/react-dom": "^16.9.4",
-    "gh-pages": "^3.1.0",
-    "prettier": "^2.0.5",
-    "ts-node": "^8.10.2",
-    "typescript": "3.9.7"
+    "@types/amplitude-js": "^8.16.5",
+    "@types/gh-pages": "^6.1.0",
+    "@types/lodash": "^4.17.25",
+    "@types/node": "^26",
+    "@types/react": "^19.2",
+    "@types/react-dom": "^19.2",
+    "gh-pages": "^6.3.0",
+    "prettier": "^3.9.6",
+    "typescript": "^7"
   },
   "license": "MIT"
 }
