@@ -34,7 +34,7 @@ export const C = (props: Props) => {
         payload: terraformPlan,
       })
 
-      router.push({ pathname: '/plan-details' }, '/terraform-visual/plan-details')
+      router.push('/plan-details')
     }
 
     fileReader.readAsText(event.target.files[0])
