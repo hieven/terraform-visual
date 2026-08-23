@@ -3,9 +3,11 @@
 // (But you could use ES2015 features supported by your Node.js version)
 
 const debug = process.env.NODE_ENV !== 'production'
+const basePath = debug ? '' : '/terraform-visual'
 
 module.exports = {
   output: 'export',
-  assetPrefix: debug ? '' : '/terraform-visual/',
+  basePath,
+  assetPrefix: debug ? '' : `${basePath}/`,
   outputFileTracingRoot: __dirname,
 }
