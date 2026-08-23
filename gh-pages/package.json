@@ -3,8 +3,8 @@
   "description": "Terraform Visual GitHub page",
   "version": "1.2.1",
   "scripts": {
-    "build": "rm -rf .next && yarn next build && yarn next export -o dist",
-    "dev": "yarn next dev",
+    "build": "rm -rf .next && next build && next export -o dist",
+    "dev": "next dev",
     "deploy": "touch dist/.nojekyll && node scripts/deploy"
   },
   "dependencies": {

@@ -7,11 +7,11 @@
     "terraform-visual": "bin/index.js"
   },
   "scripts": {
-    "build": "yarn build:template && yarn build:cli",
-    "build:cli": "rm -rf dist && yarn tsc",
+    "build": "npm run build:template && npm run build:cli",
+    "build:cli": "rm -rf dist && tsc",
     "dev:cli": "ts-node src/index",
-    "build:template": "cd template && rm -rf .next && rm -rf dist && yarn next build && yarn next export -o dist",
-    "dev:template": "cd template && yarn next dev"
+    "build:template": "rm -rf template/.next template/dist && npm --prefix template run build",
+    "dev:template": "npm --prefix template run dev"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.1",
