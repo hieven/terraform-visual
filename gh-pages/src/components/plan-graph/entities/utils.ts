@@ -5,6 +5,7 @@ const COLOR_DARK_GREY = '#6c757d'
 const COLOR_GREEN = '#28a745'
 const COLOR_RED = '#dc3545'
 const COLOR_YELLOW = '#ffc107'
+const COLOR_PURPLE = '#6f42c1'
 const COLOR_WHITE = '#ffffff'
 
 const LABEL_FONT_SIZE = 14
@@ -123,8 +124,8 @@ export const IntermediateGraph = {
 
       switch (actionAlias) {
         case Entities.TerraformPlanResourceChangeChangeActionAlias.CreateDelete: {
-          graphData.style.fill = COLOR_YELLOW
-          graphData.style.stroke = COLOR_YELLOW
+          graphData.style.fill = COLOR_PURPLE
+          graphData.style.stroke = COLOR_PURPLE
           break
         }
 
@@ -141,8 +142,8 @@ export const IntermediateGraph = {
         }
 
         case Entities.TerraformPlanResourceChangeChangeActionAlias.DeleteCreate: {
-          graphData.style.fill = COLOR_YELLOW
-          graphData.style.stroke = COLOR_YELLOW
+          graphData.style.fill = COLOR_PURPLE
+          graphData.style.stroke = COLOR_PURPLE
           break
         }
 
