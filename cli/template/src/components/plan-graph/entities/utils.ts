@@ -53,7 +53,7 @@ export const IntermediateGraph = {
         continue
       }
 
-      const addrComps = resource.address.split('.')
+      const addrComps = resource.address.split(/\.(?=(?:[^"]*"[^"]*")*[^"]*$)/g)
 
       let cur = graph
       for (let i = 0; i < addrComps.length; i++) {
